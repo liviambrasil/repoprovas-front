@@ -36,6 +36,7 @@ export default function NewTest (){
             <TextField  select
                         label="Categoria"
                         value={currencies}
+                        multiple={false}
                         variant="outlined"
                         SelectProps={{
                             native: true,
