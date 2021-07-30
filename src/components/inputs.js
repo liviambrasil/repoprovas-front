@@ -2,7 +2,7 @@ import { styled, TextField } from "@material-ui/core"
 
 function SelectInput(props) {
     const {label, value, onChange, variant, SelectProps, options} = props
-    console.log(options)
+
     return (
         <MyInput    select
                     required

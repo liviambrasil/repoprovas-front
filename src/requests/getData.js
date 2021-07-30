@@ -6,6 +6,7 @@ async function getSubject (setSubjects) {
         const response = await axios.get(`${process.env.REACT_APP_HOST}/subjects`)
         response.data.map(e => {
             subjectsOptions.push({value: e.name, label: e.name})
+            return subjectsOptions
         })
         setSubjects(subjectsOptions)
     }
@@ -24,6 +25,7 @@ async function getProfessorsBySubject ({setProfessors, event, subject}) {
 
         response.data.map(e => {
             professorsOptions.push({value: e.name, label: e.name})
+            return professorsOptions
         })
         setProfessors(professorsOptions)
     }
