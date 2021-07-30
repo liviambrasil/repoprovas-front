@@ -1,9 +1,11 @@
 import { Button } from '@material-ui/core'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { Link } from 'react-router-dom';
-import { Title, Container, Box } from "../styles/homeStyles"
+import { Title, Container, Box } from "../styles/layoutStyles"
+import axios from 'axios';
 
 export default function Home () {
+
     return(
         <Container>
             <Title>RepoProvas</Title>
@@ -16,7 +18,7 @@ export default function Home () {
                 <Link to="/new-test">
                     <Button variant="contained" 
                             color="primary" 
-                            size="large" 
+                            size="large"
                             startIcon={<CloudUploadIcon />}>Enviar prova</Button>
                 </Link>
             </Box>

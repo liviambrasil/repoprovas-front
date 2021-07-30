@@ -1,66 +1,76 @@
-import { TextField } from "@material-ui/core";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { TextInput, SelectInput } from "../components/inputs";
+import { Title, Container } from "../styles/layoutStyles";
+import { getProfessorsBySubject, getSubject } from "../requests/getData";
 
 export default function NewTest (){
-    const currencies = [
-        {
-          value: 'P1',
-          label: 'P1',
-        },
-        {
-          value: 'P2',
-          label: 'P2',
-        },
-        {
-            value: 'P3',
-            label: 'P3',
-        },
-        {
-            value: '2CH',
-            label: '2CH',
-        },
-        {
-            value: 'Outras',
-            label: 'Outras',
-        }
+
+    const [name, setName] = useState()
+    const [category, setCategory] = useState("Selecione a categoria")
+    const [subject, setSubject] = useState("Selecione a disciplina")
+    const [professor, setProfessor] = useState("Selecione o professor da disciplina")
+    const [subjects, setSubjects] = useState([])
+    const [professors, setProfessors] = useState([])
+
+    useEffect(async() => {
+        await getSubject(setSubjects)
+    }, [])
+
+    const options = [
+        {value: 'P1', label: 'P1'},
+        {value: 'P2', label: 'P2'},
+        {value: 'P3', label: 'P3'},
+        {value: '2CH', label: '2CH'},
+        {value: 'Outras', label: 'Outras'}
     ]
-
+    
     return(
-        <Container>
-            <Form autoComplete="on">
-            <TextField  required 
-                        defaultValue="2020/1" 
-                        variant="outlined"
-                        label="Nome"/>
+            <Container>
+                <Title>RepoProvas</Title>
+                <Form autoComplete="on">
 
-            <TextField  select
-                        label="Categoria"
-                        value={currencies}
-                        multiple={false}
-                        variant="outlined"
-                        SelectProps={{
-                            native: true,
-                        }}>
-            {currencies.map((option) => (
-                <option key={option.value} value={option.value}>
-                {option.label}
-                </option>
-            ))}
-            </TextField>
-            </Form>
-        </Container>
-        
-    )
+                <TextInput  required 
+                            variant="outlined"
+                            label="Nome"
+                            onChange={(event) => setName(event.target.value)} />
+
+                <SelectInput    label="Categoria"
+                                value={category}
+                                onChange={(event) => setCategory(event.target.value)}
+                                variant="outlined"
+                                SelectProps={{native: true,}}
+                                options={options}>
+                </SelectInput>
+
+                <SelectInput    label="Disciplina"
+                                value={subjects.length ? subject : {value: "", label: ""}}
+                                onChange={async(event) => {
+                                    setSubject(event.target.value)
+                                    getProfessorsBySubject({event, subject, setProfessors})}}
+                                variant="outlined"
+                                SelectProps={{native: true,}}
+                                options={subjects}>
+                </SelectInput>
+
+                <SelectInput    label="Professor"
+                                value={professors.length ? professor : {value: "", label: ""}}
+                                onChange={(event) => setProfessor(event.target.value)}
+                                variant="outlined"
+                                SelectProps={{native: true,}}
+                                options={professors}>
+                </SelectInput>
+
+                </Form>
+            </Container>
+            
+        )
+
 }
 
 const Form = styled.form`
+    width: 460px;
     height: auto;
-`
-
-const Container = styled.div`
-    width:100%;
-    height: 100vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
 `

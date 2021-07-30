@@ -15,7 +15,7 @@ const Container = styled.div`
     flex-direction: column;
 `
 const Box = styled.div`
-    width: 50%;
+    width: 460px;
     display:flex;
     justify-content: space-evenly;
 
