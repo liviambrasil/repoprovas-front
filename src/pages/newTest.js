@@ -104,7 +104,7 @@ const Form = styled.form`
     align-items: center;
     margin-bottom: 15px;
 
-    @media(max-width: 510px) {
+    @media(max-width: 650px) {
         width: 90%;
     }
 `

@@ -20,7 +20,7 @@ const Container = styled.div`
         font-weight: 100;
         margin-bottom: 15px;
     }
-    @media(max-width: 510px) {
+    @media(max-width: 650px) {
         width: 90%;
         flex-direction: column;
     }
@@ -30,7 +30,7 @@ const Box = styled.div`
     display:flex;
     justify-content: space-evenly;
 
-    @media(max-width: 510px) {
+    @media(max-width: 650px) {
         height: 25vh;
         width: 90%;
         flex-direction: column;

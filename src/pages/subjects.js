@@ -107,7 +107,7 @@ export default function Subjects () {
 export const Margin = styled.div`
     margin-top: 50px;
 
-    @media(max-width: 510px) {
+    @media(max-width: 650px) {
         width: 100%;
         height: auto;
         display: flex;
