@@ -20,6 +20,10 @@ const Container = styled.div`
         font-weight: 100;
         margin-bottom: 15px;
     }
+    @media(max-width: 510px) {
+        width: 90%;
+        flex-direction: column;
+    }
 `
 const Box = styled.div`
     width: 460px;
@@ -28,6 +32,7 @@ const Box = styled.div`
 
     @media(max-width: 510px) {
         height: 25vh;
+        width: 90%;
         flex-direction: column;
     }
 `

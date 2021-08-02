@@ -36,7 +36,7 @@ function TextInput (props) {
 
 const MyInput = styled(TextField)({
     margin: '10px',
-    width: '100%'
+    width: '100%',
 })
 
 
