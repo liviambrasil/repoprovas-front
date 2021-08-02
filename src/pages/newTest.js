@@ -7,6 +7,7 @@ import { MyButton } from "../components/button";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Center } from "./home";
 
 export default function NewTest (){
 
@@ -14,7 +15,6 @@ export default function NewTest (){
     const [category, setCategory] = useState()
     const [subject, setSubject] = useState()
     const [professor, setProfessor] = useState()
-    const [semester, setSemester] = useState()
     const [subjects, setSubjects] = useState([])
     const [professors, setProfessors] = useState([])
     const [link, setLink] = useState("")
@@ -32,26 +32,15 @@ export default function NewTest (){
         {value: 'Outras', label: 'Outras'}
     ]
 
-    const semestersOptions = [
-        {value: '1°', label: '1°'},
-        {value: '2°', label: '2°'},
-        {value: '3°', label: '3°'},
-        {value: '4°', label: '4°'},
-        {value: '5°', label: '5°'},
-        {value: '6°', label: '6°'},
-        {value: '7°', label: '7°'},
-        {value: '8°', label: '8°'},
-        {value: '9°', label: '9°'},
-        {value: '10°', label: '10°'}
-    ]
 
     if(!subjects.length) return <></>
     return(
+        <Center>
             <Container>
                 <Title>RepoProvas</Title>
                 <Form autoComplete="on" onSubmit={(e) => {
                                             e.preventDefault()
-                                            sendTest({name, category, subject, professor, history, link, semester})}}>
+                                            sendTest({name, category, subject, professor, history, link})}}>
                     <TextInput  required 
                                 variant="outlined"
                                 label="Nome"
@@ -66,12 +55,6 @@ export default function NewTest (){
                                     variant="outlined"
                                     SelectProps={{native: true,}}
                                     options={options} />
-                    <SelectInput    label="Período"
-                                    value={semester}
-                                    onChange={(event) => setSemester(event.target.value)}
-                                    variant="outlined"
-                                    SelectProps={{native: true,}}
-                                    options={semestersOptions} />
                     <SelectInput    label="Disciplina"
                                     value={subject}
                                     onChange={async(event) => {
@@ -80,31 +63,32 @@ export default function NewTest (){
                                     variant="outlined"
                                     SelectProps={{native: true,}}
                                     options={subjects} />
-                    {professors.length
-                    ? <SelectInput    label="Professor"
-                                    value={professor}
-                                    onChange={(event) => setProfessor(event.target.value)}
-                                    variant="outlined"
-                                    SelectProps={{native: true,}}
-                                    options={professors} />
-                    : <> </>}
+                        {professors.length
+                        ? <SelectInput    label="Professor"
+                                        value={professor}
+                                        onChange={(event) => setProfessor(event.target.value)}
+                                        variant="outlined"
+                                        SelectProps={{native: true,}}
+                                        options={professors} />
+                        : <> </>}
                     
-                    <MyButton variant="contained" 
-                                color="primary" 
-                                size="large"
-                                startIcon={<CloudUploadIcon />}
-                                label="Salvar prova"
-                                type="submit" />
-                </Form>
-            </Container>
+                        <MyButton variant="contained" 
+                                    color="primary" 
+                                    size="large"
+                                    startIcon={<CloudUploadIcon />}
+                                    label="Salvar prova"
+                                    type="submit" />
+                    </Form>
+                </Container>
+            </Center>
             
         )
 
 }
 
-function sendTest ({ name, category, subject, professor, history, link, semester }) {
+function sendTest ({ name, category, subject, professor, history, link }) {
     console.log('rodou!')
-    const body = {name, category, subject, professor, link, semester}
+    const body = {name, category, subject, professor, link}
     const promise = axios.post(`${process.env.REACT_APP_HOST}/new-test`, body)
     promise.then(() => {
         alert("Prova cadastrada!")

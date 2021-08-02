@@ -73,6 +73,16 @@ async function getCategories (setCategories) {
     }
 }
 
+async function getSemesters (setSemesters) {
+    try{
+        const semesters = await axios.get(`${process.env.REACT_APP_HOST}/semesters`)
+        return setSemesters(semesters.data)
+    }
+    catch(e) {
+        console.log(e)
+    }
+}
+
 async function getTestsByCategory ({setTestsFiltered, setOpenTests, categorySelected, professor}) {
     try{
         const tests = await axios.get(`${process.env.REACT_APP_HOST}/testsByCategory/${professor.id}/${categorySelected}`)
@@ -85,5 +95,5 @@ async function getTestsByCategory ({setTestsFiltered, setOpenTests, categorySele
     }
 }
 
-export { getSubject, getProfessorsBySubject, getAllProfessors, getTests, getCategories, getTestsByCategory, getSubjects }
+export { getSubject, getProfessorsBySubject, getAllProfessors, getTests, getCategories, getTestsByCategory, getSubjects, getSemesters }
 

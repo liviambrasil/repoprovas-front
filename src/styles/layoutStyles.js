@@ -8,12 +8,12 @@ const Title = styled.h1 `
 `
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
+    
     h2{
         font-family: 'Raleway', sans-serif;
         font-size: 30px;
