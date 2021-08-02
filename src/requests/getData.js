@@ -15,8 +15,17 @@ async function getSubject (setSubjects) {
     }
 }
 
+async function getSubjects (setSubjects) {
+    try{
+        const response = await axios.get(`${process.env.REACT_APP_HOST}/subjects`)
+        setSubjects(response.data)
+    }
+    catch(e){
+        console.log(e)
+    }
+}
+
 async function getProfessorsBySubject ({setProfessors, event, subject}) {
-    console.log(event.target.value)
     const param = event.target.value
 
     const professorsOptions = []
@@ -41,7 +50,6 @@ async function getAllProfessors (setProfessors) {
     }
     catch(e) {
         console.log(e)
-        alert('Ocorreu um erro')
     }
 }
 
@@ -52,9 +60,30 @@ async function getTests (setTests) {
     }
     catch(e) {
         console.log(e)
-        alert('Ocorreu um erro')
     }
 }
 
-export { getSubject, getProfessorsBySubject, getAllProfessors, getTests }
+async function getCategories (setCategories) {
+    try{
+        const categories = await axios.get(`${process.env.REACT_APP_HOST}/categories`)
+        return setCategories(categories.data)
+    }
+    catch(e) {
+        console.log(e)
+    }
+}
+
+async function getTestsByCategory ({setTestsFiltered, setOpenTests, categorySelected, professor}) {
+    try{
+        const tests = await axios.get(`${process.env.REACT_APP_HOST}/testsByCategory/${professor.id}/${categorySelected}`)
+        console.log(tests.data)
+        if(tests.data.length) setOpenTests(true)
+        return setTestsFiltered(tests.data)
+    }
+    catch(e){
+        console.log(e)
+    }
+}
+
+export { getSubject, getProfessorsBySubject, getAllProfessors, getTests, getCategories, getTestsByCategory, getSubjects }
 
