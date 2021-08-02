@@ -3,7 +3,7 @@ import axios from "axios";
 async function getSubject (setSubjects) {
     const subjectsOptions = []
     try{
-        const response = await axios.get(`${process.env.REACT_APP_HOST}/subjects`)
+        const response = await axios.get(`${process.env.REACT_APP_HOST}subjects`)
         response.data.map(e => {
             subjectsOptions.push({value: e.name, label: e.name})
             return subjectsOptions
@@ -17,7 +17,7 @@ async function getSubject (setSubjects) {
 
 async function getSubjects (setSubjects) {
     try{
-        const response = await axios.get(`${process.env.REACT_APP_HOST}/subjects`)
+        const response = await axios.get(`${process.env.REACT_APP_HOST}subjects`)
         setSubjects(response.data)
     }
     catch(e){
@@ -30,7 +30,7 @@ async function getProfessorsBySubject ({setProfessors, event, subject}) {
 
     const professorsOptions = []
     try{
-        const response = await axios.get(`${process.env.REACT_APP_HOST}/professors/${param}`)
+        const response = await axios.get(`${process.env.REACT_APP_HOST}professors/${param}`)
 
         response.data.map(e => {
             professorsOptions.push({value: e.name, label: e.name})
@@ -45,7 +45,7 @@ async function getProfessorsBySubject ({setProfessors, event, subject}) {
 
 async function getAllProfessors (setProfessors) {
     try{
-        const professors = await axios.get(`${process.env.REACT_APP_HOST}/professors`)
+        const professors = await axios.get(`${process.env.REACT_APP_HOST}professors`)
         return setProfessors(professors.data)
     }
     catch(e) {
@@ -55,7 +55,7 @@ async function getAllProfessors (setProfessors) {
 
 async function getTests (setTests) {
     try{
-        const tests = await axios.get(`${process.env.REACT_APP_HOST}/tests`)
+        const tests = await axios.get(`${process.env.REACT_APP_HOST}tests`)
         return setTests(tests.data)
     }
     catch(e) {
@@ -65,7 +65,7 @@ async function getTests (setTests) {
 
 async function getCategories (setCategories) {
     try{
-        const categories = await axios.get(`${process.env.REACT_APP_HOST}/categories`)
+        const categories = await axios.get(`${process.env.REACT_APP_HOST}categories`)
         return setCategories(categories.data)
     }
     catch(e) {
@@ -75,7 +75,7 @@ async function getCategories (setCategories) {
 
 async function getSemesters (setSemesters) {
     try{
-        const semesters = await axios.get(`${process.env.REACT_APP_HOST}/semesters`)
+        const semesters = await axios.get(`${process.env.REACT_APP_HOST}semesters`)
         return setSemesters(semesters.data)
     }
     catch(e) {
@@ -85,7 +85,7 @@ async function getSemesters (setSemesters) {
 
 async function getTestsByCategory ({setTestsFiltered, setOpenTests, categorySelected, professor}) {
     try{
-        const tests = await axios.get(`${process.env.REACT_APP_HOST}/testsByCategory/${professor.id}/${categorySelected}`)
+        const tests = await axios.get(`${process.env.REACT_APP_HOST}testsByCategory/${professor.id}/${categorySelected}`)
         console.log(tests.data)
         if(tests.data.length) setOpenTests(true)
         return setTestsFiltered(tests.data)
