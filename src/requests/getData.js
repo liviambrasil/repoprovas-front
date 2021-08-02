@@ -34,5 +34,27 @@ async function getProfessorsBySubject ({setProfessors, event, subject}) {
     }
 }
 
-export { getSubject, getProfessorsBySubject }
+async function getAllProfessors (setProfessors) {
+    try{
+        const professors = await axios.get(`${process.env.REACT_APP_HOST}/professors`)
+        return setProfessors(professors.data)
+    }
+    catch(e) {
+        console.log(e)
+        alert('Ocorreu um erro')
+    }
+}
+
+async function getTests (setTests) {
+    try{
+        const tests = await axios.get(`${process.env.REACT_APP_HOST}/tests`)
+        return setTests(tests.data)
+    }
+    catch(e) {
+        console.log(e)
+        alert('Ocorreu um erro')
+    }
+}
+
+export { getSubject, getProfessorsBySubject, getAllProfessors, getTests }
 

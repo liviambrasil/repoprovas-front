@@ -29,7 +29,8 @@ function TextInput (props) {
         <MyInput  required 
                     variant={variant}
                     label={label}
-                    onChange={onChange}/>
+                    onChange={onChange}
+                    />
     )
 }
 

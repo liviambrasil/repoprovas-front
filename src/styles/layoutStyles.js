@@ -13,6 +13,13 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    h2{
+        font-family: 'Raleway', sans-serif;
+        font-size: 30px;
+        font-weight: 100;
+        margin-bottom: 15px;
+    }
 `
 const Box = styled.div`
     width: 460px;

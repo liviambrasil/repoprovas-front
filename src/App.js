@@ -3,7 +3,9 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from "./pages/home"
 import NewTest from './pages/newTest';
-import Tests from './pages/tests';
+import Professors from './pages/professors';
+import Subjects from './pages/subjects';
+import Tests from './pages/filterTests';
 import GlobalStyle from './styles/GlobalStyles';
 import { theme } from './styles/theme';
 
@@ -16,8 +18,14 @@ function App() {
               <Route path="/" exact>
                 <Home />
               </Route>
-              <Route path="/tests">
+              <Route path="/tests" exact>
                 <Tests />
+              </Route>
+              <Route path="/tests/subjects">
+                <Subjects />
+              </Route>
+              <Route path="/tests/professors">
+                <Professors />
               </Route>
               <Route path="/new-test">
                 <NewTest />
