@@ -86,7 +86,6 @@ async function getSemesters (setSemesters) {
 async function getTestsByCategory ({setTestsFiltered, setOpenTests, categorySelected, professor}) {
     try{
         const tests = await axios.get(`${process.env.REACT_APP_HOST}testsByCategory/${professor.id}/${categorySelected}`)
-        console.log(tests.data)
         if(tests.data.length) setOpenTests(true)
         return setTestsFiltered(tests.data)
     }

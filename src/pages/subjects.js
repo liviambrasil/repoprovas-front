@@ -24,9 +24,7 @@ export default function Subjects () {
     }, [])
 
     function filterTests(semesterId, subjectName) {
-        console.log('entrou')
         const arr = (tests.filter((test) => test.subject.name === subjectName && semesterId === test.subject.semesterId))
-        console.log(arr)
         if(arr) setTestsFiltered(arr)
     }
 

@@ -87,7 +87,6 @@ export default function NewTest (){
 }
 
 function sendTest ({ name, category, subject, professor, history, link }) {
-    console.log('rodou!')
     const body = {name, category, subject, professor, link}
     const promise = axios.post(`${process.env.REACT_APP_HOST}new-test`, body)
     promise.then(() => {
